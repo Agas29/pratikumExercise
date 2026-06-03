@@ -1,19 +1,48 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Informasi Kegiatan Mahasiswa</title>
-</head>
-<body>
-    <h1>Sistem Informasi Kegiatan & Estimasi Konsumsi</h1>
-    <hr>
-    <h3>Identitas Praktikum</h3>
-    <p>Nama Mahasiswa: [Nama Kamu]</p>
-    <p>NIM: [NIM Kamu]</p>
-    <p>Layanan Azure yang digunakan: Azure Static Web Apps, Azure Functions, Azure App Service, Azure Container Apps</p>
-    <hr>
-    <h3>Detail Kegiatan</h3>
-    <p>Kegiatan: Seminar Nasional Informatika 2026</p>
-    <p>Gunakan endpoint API Azure Functions untuk menghitung estimasi biaya konsumsi sesuai jumlah peserta.</p>
-</body>
-</html>
+module.exports = async function (context, req) {
+    // 1. Mengambil parameter dari URL (contoh: ?jumlah=40&jenis=snack)
+    const jumlah = parseInt(req.query.jumlah);
+    const jenis = req.query.jenis;
+
+    // Validasi input jika parameter kosong
+    if (!jumlah || !jenis) {
+        context.res = {
+            status: 400,
+            body: { message: "Harap masukkan parameter jumlah dan jenis di URL" }
+        };
+        return;
+    }
+
+    // 2. Logika penentuan harga per peserta sesuai ketentuan tugas
+    let hargaPerPeserta = 0;
+    if (jenis.toLowerCase() === "snack") {
+        hargaPerPeserta = 15000;
+    } else if (jenis.toLowerCase() === "makan") {
+        hargaPerPeserta = 30000;
+    } else if (jenis.toLowerCase() === "lengkap") {
+        hargaPerPeserta = 45000;
+    } else {
+        context.res = {
+            status: 400,
+            body: { message: "Jenis konsumsi salah! Pilih: snack, makan, atau lengkap" }
+        };
+        return;
+    }
+
+    // 3. Hitung total biaya
+    const total = jumlah * hargaPerPeserta;
+
+    // 4. Mengembalikan response JSON PERSIS seperti contoh instruksi tugas
+    context.res = {
+        status: 200,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: {
+            "jumlah": jumlah,
+            "jenis": jenis.toLowerCase(),
+            "hargaPerPeserta": hargaPerPeserta,
+            "total": total,
+            "timestamp": new Date().toISOString()
+        }
+    };
+};

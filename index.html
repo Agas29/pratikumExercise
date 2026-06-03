@@ -1,48 +1,37 @@
-module.exports = async function (context, req) {
-    // 1. Mengambil parameter dari URL (contoh: ?jumlah=40&jenis=snack)
-    const jumlah = parseInt(req.query.jumlah);
-    const jenis = req.query.jenis;
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Kegiatan & API Konsumsi</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; }
+        code { background-color: #f4f4f4; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        pre { background: #f4f4f4; padding: 15px; border-left: 4px solid #0078d4; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistem Informasi Kegiatan Mahasiswa</h1>
+        <p>Selamat datang di halaman informasi kegiatan Program Studi Informatika Politeknik Astra.</p>
+        
+        <hr>
+        
+        <h2>Dokumentasi Singkat Cara Menggunakan API Estimasi Biaya</h2>
+        <p>API ini digunakan untuk menghitung estimasi biaya konsumsi kegiatan berdasarkan jumlah peserta dan jenis konsumsi.</p>
+        
+        <h3>1. Alamat Endpoint API</h3>
+        <p><code>[TEMPEL_URL_AZURE_FUNCTION_KAMU_DI_SINI]</code></p>
+        
+        <h3>2. Parameter yang Diperlukan</h3>
+        <ul>
+            <li><code>jumlah</code> (Integer): Jumlah peserta kegiatan (contoh: 40)</li>
+            <li><code>jenis</code> (String): Pilihan berupa <code>snack</code>, <code>makan</code>, atau <code>lengkap</code></li>
+        </ul>
 
-    // Validasi input jika parameter kosong
-    if (!jumlah || !jenis) {
-        context.res = {
-            status: 400,
-            body: { message: "Harap masukkan parameter jumlah dan jenis di URL" }
-        };
-        return;
-    }
-
-    // 2. Logika penentuan harga per peserta sesuai ketentuan tugas
-    let hargaPerPeserta = 0;
-    if (jenis.toLowerCase() === "snack") {
-        hargaPerPeserta = 15000;
-    } else if (jenis.toLowerCase() === "makan") {
-        hargaPerPeserta = 30000;
-    } else if (jenis.toLowerCase() === "lengkap") {
-        hargaPerPeserta = 45000;
-    } else {
-        context.res = {
-            status: 400,
-            body: { message: "Jenis konsumsi salah! Pilih: snack, makan, atau lengkap" }
-        };
-        return;
-    }
-
-    // 3. Hitung total biaya
-    const total = jumlah * hargaPerPeserta;
-
-    // 4. Mengembalikan response JSON PERSIS seperti contoh instruksi tugas
-    context.res = {
-        status: 200,
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: {
-            "jumlah": jumlah,
-            "jenis": jenis.toLowerCase(),
-            "hargaPerPeserta": hargaPerPeserta,
-            "total": total,
-            "timestamp": new Date().toISOString()
-        }
-    };
-};
+        <h3>3. Contoh Format Pemanggilan URL</h3>
+        <p><code>[TEMPEL_URL_AZURE_FUNCTION_KAMU_DI_SINI]?jumlah=40&jenis=snack</code></p>
+    </div>
+</body>
+</html>

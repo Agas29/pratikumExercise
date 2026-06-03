@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informasi Kegiatan & API Konsumsi</title>
+    <title>Praktikum Komputasi Awan - Informasi Kegiatan</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
-        .container { max-width: 800px; margin: auto; }
-        code { background-color: #f4f4f4; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
-        pre { background: #f4f4f4; padding: 15px; border-left: 4px solid #0078d4; overflow-x: auto; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #fafafa; color: #333; }
+        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 700px; margin: auto; }
+        h1, h2 { color: #0078d4; }
+        code { background: #f4f4f4; padding: 3px 6px; border-radius: 4px; font-family: Consolas, monospace; }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="card">
         <h1>Sistem Informasi Kegiatan Mahasiswa</h1>
-        <p>Selamat datang di halaman informasi kegiatan Program Studi Informatika Politeknik Astra.</p>
-        
+        <p>Halaman ini berisi informasi kegiatan operasional internal program studi.</p>
         <hr>
         
-        <h2>Dokumentasi Singkat Cara Menggunakan API Estimasi Biaya</h2>
-        <p>API ini digunakan untuk menghitung estimasi biaya konsumsi kegiatan berdasarkan jumlah peserta dan jenis konsumsi.</p>
-        
-        <h3>1. Alamat Endpoint API</h3>
-        <p><code>func-serverless-02-acfyhbdce5ebetgp.southeastasia-01.azurewebsites.net</code></p>
-        
-        <h3>2. Parameter yang Diperlukan</h3>
-        <ul>
-            <li><code>jumlah</code> (Integer): Jumlah peserta kegiatan (contoh: 40)</li>
-            <li><code>jenis</code> (String): Pilihan berupa <code>snack</code>, <code>makan</code>, atau <code>lengkap</code></li>
-        </ul>
+        <h2>Identitas Praktikum</h2>
+        <p><strong>Nama:</strong> Anggoro</p>
+        <p><strong>NIM:</strong> 002</p>
+        <p><strong>Layanan Azure yang Digunakan:</strong> Azure Static Web Apps, Azure Functions, Azure App Service, Azure Container Apps</p>
+        <hr>
 
-        <h3>3. Contoh Format Pemanggilan URL</h3>
-        <p><code>func-serverless-02-acfyhbdce5ebetgp.southeastasia-01.azurewebsites.net?jumlah=40&jenis=snack</code></p>
+        <h2>Dokumentasi Akses API Konsumsi</h2>
+        <p>Gunakan parameter query <code>jumlah</code> dan <code>jenis</code> untuk menghitung biaya kegiatan.</p>
+        <p><strong>Contoh Endpoint:</strong><br>
+        <code>https://func-serverless-02-acfyhbdce5ebetgp.southeastasia-01.azurewebsites.net/api/HttpExercise?jumlah=40&jenis=snack</code></p>
     </div>
 </body>
+
+
+
+    
 </html>
